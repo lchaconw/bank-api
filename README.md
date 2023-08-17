@@ -66,3 +66,7 @@ mvn test
 ## Postman Collection
 
 A Postman collection is included in the project root directory. It contains examples of requests for each endpoint.
+
+## Swagger Documentation
+
+The project includes Swagger documentation. To access it, run the application and go to `http://localhost:8080/swagger-ui.html` in your browser.

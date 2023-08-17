@@ -22,6 +22,11 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    /**
+     * Purchase a product
+     * @param transaction Transaction object
+     * @return Transaction object
+     */
     public Transaction purchase(TransactionDto transaction) {
         try {
             Card card = cardRepository.findById(transaction.getCardId()).orElseThrow(() -> new CustomBadRequestException("Tarjeta no encontrada"));
@@ -53,10 +58,20 @@ public class TransactionService {
 
     }
 
+    /**
+     * Get a transaction by id
+     * @param transactionId Transaction id
+     * @return Transaction object
+     */
     public Transaction getTransaction(Long transactionId) {
         return transactionRepository.findById(transactionId).orElseThrow(() -> new CustomBadRequestException("Transacción no encontrada"));
     }
 
+    /**
+     * Anulate a transaction
+     * @param anulateTransactionDto Transaction object
+     * @return Transaction object
+     */
     public Transaction anulateTransaction(TransactionDto anulateTransactionDto) {
         try {
             Transaction transaction = transactionRepository.findById(anulateTransactionDto.getTransactionId())

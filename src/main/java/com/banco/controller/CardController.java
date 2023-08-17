@@ -18,11 +18,24 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
+    /**
+     * Generate a card number for a given product
+     * @param productId Product id
+     * @param name Card holder name
+     * @param lastName Card holder last name
+     * @return Card object
+     */
     @PostMapping("/{productId}/number")
     public ResponseEntity<Card> generateCardNumber(@PathVariable Long productId, @RequestParam String name, @RequestParam String lastName) {
         Card card = cardService.generateCardNumber(productId, name, lastName);
         return new ResponseEntity<>(card, HttpStatus.OK);
     }
+
+    /**
+     * Enroll a card
+     * @param card Card object
+     * @return Response object
+     */
 
     @PostMapping("/enroll")
     public ResponseEntity<Response> enrollCard(@RequestBody CardDto card) {
@@ -31,6 +44,11 @@ public class CardController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    /**
+     * Block a card
+     * @param cardId Card id
+     * @return Response object
+     */
     @DeleteMapping("/{cardId}")
     public ResponseEntity<Response> blockCard(@PathVariable String cardId) {
         cardService.blockCard(cardId);
@@ -38,6 +56,11 @@ public class CardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    /**
+     * Recharge card balance
+     * @param card Card object
+     * @return Response object
+     */
     @PostMapping("/balance")
     public ResponseEntity<Response> rechargeBalance(@RequestBody CardDto card) {
         cardService.rechargeBalance(card);
@@ -45,6 +68,11 @@ public class CardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    /**
+     * Get card balance
+     * @param cardId Card id
+     * @return Response object
+     */
     @GetMapping("/balance/{cardId}")
     public ResponseEntity<Response> getBalance(@PathVariable String cardId) {
         double balance = cardService.getBalance(cardId);

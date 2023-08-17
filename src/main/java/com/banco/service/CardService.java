@@ -28,6 +28,13 @@ public class CardService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    /**
+     * Generate a card number for a given product
+     * @param productId Product id
+     * @param name Card holder name
+     * @param lastName Card holder last name
+     * @return Card object with generated card number
+     */
     public Card generateCardNumber(Long productId, String name, String lastName) {
             Product product = productRepository.findById(productId).orElseThrow(() -> new CustomBadRequestException("Producto no encontrado"));
             String randomDigits = generateRandomNumber(10);
@@ -42,6 +49,10 @@ public class CardService {
             return card;
     }
 
+    /**
+     * Enroll a card
+     * @param card Card object
+     */
     public void enrollCard(CardDto card) {
         Card cardDB = cardRepository.findById(card.getCardId()).orElseThrow(() -> new CustomBadRequestException("Tarjeta no encontrada"));
 
@@ -53,6 +64,11 @@ public class CardService {
         cardRepository.save(cardDB);
     }
 
+    /**
+     * Generate a random number
+     * @param length Length of the number
+     * @return Random number
+     */
     public String generateRandomNumber(int length) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < length; i++) {
@@ -61,6 +77,10 @@ public class CardService {
         return result.toString();
     }
 
+    /**
+     * Block a card
+     * @param cardId Card id
+     */
     public Card blockCard(String cardId) {
         Card card = cardRepository.findById(cardId).orElseThrow(() -> new CustomBadRequestException("Tarjeta no encontrada"));
         if (card.getStatus().equals(CardStatus.BLOCKED)) {
@@ -70,6 +90,10 @@ public class CardService {
         return cardRepository.save(card);
     }
 
+    /**
+     * Recharge card balance
+     * @param card Card object
+     */
     public Card rechargeBalance(CardDto card) {
         Card cardDb = cardRepository.findById(card.getCardId()).orElseThrow(() -> new CustomBadRequestException("Tarjeta no encontrada"));
         if (!cardDb.getStatus().equals(CardStatus.ACTIVE)) {
@@ -83,6 +107,11 @@ public class CardService {
         return cardRepository.save(cardDb);
     }
 
+    /**
+     * Get card balance
+     * @param cardId Card id
+     * @return Card balance
+     */
     public double getBalance(String cardId) {
         Card card = cardRepository.findById(cardId).orElseThrow(() -> new CustomBadRequestException("Tarjeta no encontrada"));
         return card.getBalance();
