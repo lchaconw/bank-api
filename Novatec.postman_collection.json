@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "825cf0d8-51da-44ce-b997-c97a791c2fd6",
+		"name": "Novatec",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11207676"
+	},
+	"item": [
+		{
+			"name": "New number Card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL_LOCAL}}/card/125478/number?name=Pedro&lastName=Perez",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"card",
+						"125478",
+						"number"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Pedro"
+						},
+						{
+							"key": "lastName",
+							"value": "Perez"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardId\": \"1254782965130599\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_LOCAL}}/card/enroll",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"card",
+						"enroll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Block Card",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardId\": \"1254782965130599\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_LOCAL}}/card/1254782965130599",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"card",
+						"1254782965130599"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recharge Balance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardId\": \"1254782965130599\",\r\n    \"balance\": \"1000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_LOCAL}}/card/balance",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"card",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_LOCAL}}/card/balance/1254782965130599",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"card",
+						"balance",
+						"1254782965130599"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardId\": \"1254782965130599\",\r\n    \"price\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_LOCAL}}/transaction/purchase",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"transaction",
+						"purchase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_LOCAL}}/transaction/1",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"transaction",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anulation Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardId\": \"1254782965130599\",\r\n    \"transactionId\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_LOCAL}}/transaction/anulation",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"transaction",
+						"anulation"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
